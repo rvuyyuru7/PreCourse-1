@@ -1,7 +1,7 @@
-// Time Complexity : O(N) for insert and printList because of the traversal from head to last node.
+// Time Complexity : O(1) for insert and O(N) printList because of the traversal from head to last node.
 // Space Complexity : O(1)
 // Did this code successfully run on Leetcode : Did not find it on Leetcode
-// Any problem you faced while coding this : No
+// Any problem you faced while coding this : Updated the insert() using tail pointer. Time complexity changed from O(N) to O(1) for insert().
 import java.io.*; 
   
 // Java program to implement 
@@ -9,6 +9,7 @@ import java.io.*;
 public class Exercise_3 { 
   
     Node head; // head of list 
+    Node tail; // tail of list
   
     // Linked list Node. 
     // This inner class is made static 
@@ -34,19 +35,15 @@ public class Exercise_3 {
         Node newNode = new Node(data);
    
         // If the Linked List is empty, 
-        // then make the new node as head 
+        // then make the new node as head and tail
 
         if (list.head == null) {
             list.head = newNode;
+            list.tail = newNode;
         } else {
-            // Else traverse till the last node 
-            // and insert the new_node there 
-            Node currentNode = list.head;
-            while(currentNode.next != null) {
-                currentNode = currentNode.next;
-            }
-            // Insert the new_node at last node 
-            currentNode.next = newNode;
+            // Insert the new_node at last/tail node 
+            list.tail.next = newNode;
+            list.tail = newNode;
         }
 
         // Return the list by head 

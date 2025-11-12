@@ -1,7 +1,7 @@
 // Time Complexity : O(1) for all operations
 // Space Complexity : O(1) since MAX is constant
 // Did this code successfully run on Leetcode : Did not find it on Leetcode
-// Any problem you faced while coding this : No
+// Any problem you faced while coding this : Updated if condition in push() to fix index out of bound / stack overflow issue. Missed it earlier.
 class Stack { 
     static final int MAX = 1000; 
     int top; 
@@ -10,7 +10,9 @@ class Stack {
     boolean isEmpty() 
     { 
         //Write your code here 
-        return top == -1;
+        {
+            return top == -1;
+        }
     } 
 
     Stack() 
@@ -24,11 +26,12 @@ class Stack {
     { 
         //Check for stack Overflow
         //Write your code here
-        if (top < MAX) {
-            a[++ top] = x;
-            return true;
+        if (top + 1 == MAX) {
+            System.out.println("Stack Overflow");
+            return false;
         }
-        return false;
+        a[++ top] = x;
+        return true;
     } 
   
     int pop() 
@@ -47,6 +50,10 @@ class Stack {
     int peek() 
     { 
         //Write your code here
+        if (isEmpty()) {
+            System.out.println("Stack is empty");
+            return 0;
+        }
         return a[top];
     } 
 } 
